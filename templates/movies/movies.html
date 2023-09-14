@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}
+  Must Watch
+{% endblock title %}
+{% block content %}
+  <div class="container p-4 text-main">
+    {% if movie %}
+      <div class="col-8 col-md-6 col-lg-4 col-xxl-3 mx-auto">
+        <img src="{{ movie.poster.url }}"
+             class="img-fluid"
+             style="border-radius: 2.5%"
+             alt="...">
+      </div>
+      <div class="col-lg-8 col-xxl-7 mx-auto">
+        <h1 class="my-2 text-center text-main display-6 fs-2">{{ movie.title }}</h1>
+        <div class="row w-100 mx-auto pb-2 border-bottom border-secondary">
+          <p class="col p-0 mb-0">{{ movie.type }}</p>
+          <p class="col p-0 mb-0 text-center">{{ movie.year }}</p>
+          <p class="col p-0 mb-0 text-end">{{ movie.genre }}</p>
+        </div>
+        <div class="row w-100 mx-auto small text-sec">
+          <div class="col p-0">
+            <p>
+              Directed by {{ movie.director_1 }}
+              {% if movie.director_2 %}, {{ movie.director_2 }}{% endif %}
+            </p>
+            <p class='mb-0'>{{ movie.star_1 }}</p>
+            <p class='mb-0'>{{ movie.star_2 }}</p>
+            <p class='mb-0'>{{ movie.star_3 }}</p>
+          </div>
+          <div class="col p-0 text-end">
+            <p class='mb-0'>KP {{ movie.kp }}</p>
+            <p class="mb-0">IMDB {{ movie.imdb }}</p>
+          </div>
+        </div>
+        <p class='py-4 mb-0'>{{ movie.description }}</p>
+        <div class="row w-100 mx-auto justify-content-between">
+          {% with request.resolver_match.view_name as view_name %}
+            {% if many %}
+              <a class="btn btn-outline-light col-3 col-lg-2"
+                 {% if view_name == 'movies:watchlist_movie' %} href="{% url 'movies:watchlist_movie' previous %}" {% else %} href="{% url 'movies:movie' previous %}" {% endif %}
+                 role="button">
+                Previous
+              </a>
+            {% endif %}
+            {% if user.is_authenticated %}
+              {% if in_watchlist %}
+                <a class="btn btn-outline-secondary col-3 col-lg-2 mx-auto"
+                   href="{% url 'movies:watchlist_manage' movie.pk %}"
+                   role="button">
+                  Added
+                </a>
+              {% else %}
+                <a class="btn btn-outline-light col-3 col-lg-2 text-nowrap mx-auto"
+                   href="{% url 'movies:watchlist_manage' movie.pk %}"
+                   role="button">
+                  Add
+                </a>
+              {% endif %}
+            {% endif %}
+            {% if many %}
+              <a class="btn btn-outline-light col-3 col-lg-2"
+                 {% if view_name == 'movies:watchlist_movie' %} href="{% url 'movies:watchlist_movie' next %}" {% else %} href="{% url 'movies:movie' next %}" {% endif %}
+                 role="button">
+                Next
+              </a>
+            {% endif %}
+          {% endwith %}
+        </div>
+      </div>
+    {% else %}
+      <p class='mb-0 text-center'>No movies yet</p>
+    {% endif %}
+  </div>
+{% endblock content %}

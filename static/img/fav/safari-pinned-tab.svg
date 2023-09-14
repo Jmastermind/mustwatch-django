@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 656.59 656.59">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #6f5399;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1, .cls-3 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 60px;
+      }
+
+      .cls-4 {
+        fill: #6f5399;
+      }
+
+      .cls-3 {
+        stroke: #99a8cc;
+      }
+    </style>
+  </defs>
+  <g id="Logo_Must_Watch" data-name="Logo Must Watch">
+    <rect class="cls-2" width="656.59" height="656.59"/>
+    <g>
+      <polyline class="cls-3" points="58.19 345.16 193.24 548.82 328.29 345.16 463.35 548.82 598.4 345.16"/>
+      <rect class="cls-4" x="296.4" y="393.65" width="63.79" height="72.71"/>
+      <polyline class="cls-1" points="58.19 548.82 193.24 108.35 328.29 548.82 463.35 108.35 598.4 548.82"/>
+      <polyline class="cls-3" points="193.24 548.82 328.29 345.16 463.35 548.82"/>
+    </g>
+  </g>
+</svg>

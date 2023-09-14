@@ -1,0 +1,13 @@
+<div class="container p-3 text-light">
+  <div class="mt-4 col-md-6 col-xxl-4 mx-auto">
+    <div class="card bg-dark-sec">
+      <div class="card-header">{{ card_header }}</div>
+      <div class="card-body text-sec">
+        {{ card_body }}
+        {% if form_body %}
+          {% include 'includes/form.html' %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}
+  Sign in
+{% endblock title %}
+{% block content %}
+  {% with card_header="Sign in" form_body=True button_text='Sign in' button_link='password_reset' button_link_text='Forgot your password?' %}
+    {% include 'registration/includes/card.html' %}
+  {% endwith %}
+{% endblock content %}

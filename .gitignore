@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Django
+*.sqlite3
+*.coverage
+
+# MyPy
+.mypy_cache
+
+# Additional
+sent_emails
+media/posters/*
+static/admin
+static/rest_framework
+creds.txt
+requirements_dev.txt
+Makefile
+test.http

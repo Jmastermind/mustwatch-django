@@ -1,0 +1,53 @@
+:root {
+    --main-bg-color: hsl(0, 0%, 10%) !important;
+    --sec-bg-color: hsl(0, 0%, 13%) !important;
+    --third-bg-color: hsl(0, 0%, 19%) !important;
+
+    --accent-color: hsl(0, 0%, 89%) !important;
+    --complement-color: hsl(0, 0%, 57%) !important;
+  }
+
+.bg-dark-main {
+    background-color: var(--main-bg-color)
+}
+
+.bg-dark-sec {
+    background-color: var(--sec-bg-color)
+}
+
+.form-control {
+    border-color: var(--complement-color);
+    box-shadow: 0 0 0px 1000px var(--third-bg-color) !important;
+    -webkit-text-fill-color: var(--accent-color);
+    -webkit-box-shadow: 0 0 0px 1000px var(--third-bg-color) inset !important;
+    background-color: var(--sec-bg-color);
+}
+
+.form-control:focus {
+    border-color: var(--accent-color);
+}
+
+.text-main {
+    color: var(--accent-color);
+}
+
+.text-sec {
+    color: var(--complement-color);
+}
+
+.btn-outline-light {
+    color: var(--complement-color);
+    border-color: var(--complement-color);
+}
+
+.dark_link,
+.dark_link:visited {
+    color: var(--complement-color);
+    text-decoration: underline;
+}
+
+.dark_link:hover,
+.darkk_link:active {
+    color: var(--accent-color);
+    text-decoration: underline;
+}

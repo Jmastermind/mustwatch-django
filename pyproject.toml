@@ -1,0 +1,31 @@
+[tool.black]
+include = '\.pyi?$'
+extend-exclude = '''
+(
+    .venv
+    | migrations
+    | __
+    | /\.
+)
+'''
+line_length = 79
+skip-string-normalization = true
+
+[tool.djlint]
+custom_blocks="thumbnail, form_tag"
+indent = 2
+max_line_length = 79
+max_attribute_length = 79
+preserve_blank_lines = true
+profile = "django"
+
+[tool.isort]
+profile = "black"
+src_paths = ["."]
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+ignore_missing_imports = true
+
+[tool.django-stubs]
+django_settings_module = "mustwatch.settings"

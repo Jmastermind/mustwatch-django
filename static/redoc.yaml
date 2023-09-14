@@ -1,0 +1,166 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: MustWatch API Documentation
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  description: |
+    API documentation of [MustWatch](https://xanhex.pythonanywhere.com/api) app.
+
+    Token authorization makes sense for admin only, but non-safe methods are
+    not documented yet.
+servers:
+  - url: 'https://xanhex.pythonanywhere.com/api'
+paths:
+  /api/movies:
+    get:
+      tags:
+        - Movies
+      summary: Get the list of movies
+      description: |
+        Get info about all movies in the collection.
+      operationId: getMovies
+      security:
+        - Anonymous: []
+        - Token: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                -
+                  id: 1
+                  title: Green Mile
+                  title_ru: Зеленая миля
+                  type: Movie
+                  type_ru: Фильм
+                  year: '1999'
+                  genre: Drama
+                  genre_ru: Драма
+                  director_1: Frank Darabont
+                  director_1_ru: Фрэнк Дарабонт
+                  director_2: ''
+                  director_2_ru: ''
+                  star_1: Tom Hanks
+                  star_1_ru: Том Хэнкс
+                  star_2: Michael Clarke Duncan
+                  star_2_ru: Майкл Кларк Дункан
+                  star_3: ''
+                  star_3_ru: ''
+                  kp: '9.1'
+                  imdb: '8.6'
+                  description: The story of guards on Death Row.
+                  description_ru: История охранников камеры смертников.
+                  poster: /posters/Green_Mile.jpg
+                  watched: false
+  /api/movies/{id}:
+    get:
+      tags:
+        - Movies
+      operationId: getMovie
+      summary: Get the movie
+      description: |
+        Get info about the movie in the collection.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this movie.
+          schema:
+            type: string
+      security:
+        - Anonymous: []
+        - Token: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: 1
+                title: Green Mile
+                title_ru: Зеленая миля
+                type: Movie
+                type_ru: Фильм
+                year: '1999'
+                genre: Drama
+                genre_ru: Драма
+                director_1: Frank Darabont
+                director_1_ru: Фрэнк Дарабонт
+                director_2: ''
+                director_2_ru: ''
+                star_1: Tom Hanks
+                star_1_ru: Том Хэнкс
+                star_2: Michael Clarke Duncan
+                star_2_ru: Майкл Кларк Дункан
+                star_3: ''
+                star_3_ru: ''
+                kp: '9.1'
+                imdb: '8.6'
+                description: The story of guards on Death Row.
+                description_ru: История охранников камеры смертников.
+                poster: /posters/Green_Mile.jpg
+                watched: false
+  /api/api-token-auth:
+    post:
+      tags:
+        - Token
+      operationId: createAuthToken
+      summary: Obtain token
+      description: Obtain authentication token.
+      security:
+        - Anonymous: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+      responses:
+        '201':
+          description: 'Token onbtained'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+        '401':
+          description: 'Invalid credentials'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+components:
+  securitySchemes:
+    Anonymous:
+      description: 'Unauthorized access.'
+      type: http
+      scheme: not authorized
+    Token:
+      description: 'All requests must include the header "Authorization: Token TOKENVALUE".'
+      type: http
+      scheme: token authorization
+  schemas:
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+      - username
+      - password
+    AuthenticationError:
+      type: object
+      properties:
+        detail:
+          description: 'Error description'
+          type: string
+          example: "Invalid credentials."
